@@ -1,0 +1,21 @@
+name: PullReq Check
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          # registry-url: https://nexus.kyln.tech/repository/npm-public/
+
+      - run: npm install
+
+      - run: npm test
